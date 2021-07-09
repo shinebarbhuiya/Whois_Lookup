@@ -20,7 +20,7 @@ def MainApp(request):
     # domain = 'https://ownthecart.com'
     domain_extract = tldextract.extract(domain)
     domain = domain_extract.registered_domain
-    print(domain)
+    # print(domain)
 
     sent_json = {
         
@@ -85,7 +85,7 @@ def MainApp(request):
         }
 
         
-        print(registant_state)
+        # print(registant_state)
 
 
 
