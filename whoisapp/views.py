@@ -22,8 +22,7 @@ def MainApp(request):
     domain = domain_extract.registered_domain
     # print(domain)
 
-    sent_json = {
-        
+    sent_json = {      
     "domain": domain
     }
 
@@ -46,22 +45,41 @@ def MainApp(request):
         registant_phone = data['registrant'].get('phone', 'No Data')
         registant_email= data['registrant'].get('email', 'No Data')
 
+        domain_ = data['domain'].get('domain', 'No Data')        
+        domain_name = data['domain'].get('name', 'No Data')      
+        extension = data['domain'].get('extension', 'No Data')           
+        whois_server = data['domain'].get('whois_server', 'No Data')              
+        server_names = data['domain'].get('name_servers', 'No Data')              
+        date_created = data['domain'].get('created_date', 'No Data')              
+        date_update = data['domain'].get('updated_date', 'No Data')              
+        date_expired = data['domain'].get('expiration_date', 'No Data')                 
 
+        registrar_name = data['registrar'].get('name', 'No Data')       
+        registrar_phone = data['registrar'].get('phone', 'No Data')          
+        registrar_email = data['registrar'].get('email', 'No Data')          
+        registrar_url = data['registrar'].get('referral_url', 'No Data')                 
+
+        if len(registant_email) > 25:
+            registant_email = "hiddenemail@email.com"
+
+        if len(registrar_email) > 25:
+            registrar_email = "hiddenemail@email.com"
+        
 
         payload= {
-                'domain' : data['domain']['domain'],
-                'domain_name' : data['domain']['name'],
-                'extension' : data['domain']['extension'],
-                'whois_server' : data['domain']['whois_server'],
-                'server_names' : data['domain']['name_servers'],
-                'date_created' : data['domain']['created_date'],
-                'date_update' : data['domain']['updated_date'],
-                'date_expired' : data['domain']['expiration_date'],
+                'domain' : domain_ ,
+                'domain_name' :  domain_name,
+                'extension' : extension,
+                'whois_server' : whois_server,
+                'server_names' : server_names,
+                'date_created' : date_created,
+                'date_update' : date_update,
+                'date_expired' : date_expired,
 
-                'registrar_name' : data['registrar']['name'],
-                'registrar_phone' : data['registrar']['phone'],
-                'registrar_email' : data['registrar']['email'],
-                'registrar_url' : data['registrar']['referral_url'],
+                'registrar_name' : registrar_name,
+                'registrar_phone' : registrar_phone,
+                'registrar_email' : registrar_email,
+                'registrar_url' : registrar_url,
 
                 'registrant_name' : registant_name,
                 'registrant_street' : registant_street,
@@ -70,47 +88,10 @@ def MainApp(request):
                 'registrant_postal' : registant_postal,
                 'registrant_country' : registant_country,
                 'registrant_phone' : registant_phone,
-                'registrant_email' : registant_email,
-
-                # 'registrant_name' : data['registrant']['name'],
-                # 'registrant_street' : data['registrant']['street'],
-                # 'registrant_city' : data['registrant']['city'],
-                #  'registrant_state' : data['registrant']['province'],
-                # 'registrant_postal' : data['registrant']['postal_code'],
-                # 'registrant_country' : data['registrant']['country'],
-                # 'registrant_phone' : data['registrant']['phone'],
-                # 'registrant_email' : data['registrant']['email'],
-
+                'registrant_email' : registant_email,    
                 
         }
-
-        
-        # print(registant_state)
-
-
-
-    
-        
-        
-
-               
-
-        
-
-        # if registrant_state:
-        #     payload['registrant_state'] = data['registrant']['province']
-        # else:
-        #     payload['registrant_state'] = "No Results"
-
-
-    # print(data)
-    # name = data['domain']['name']
-    # print(name)
-        
-
-
-
-    
+  
     context = { 'data' : payload} 
     return render(request, 'index.html'  , context )
 
