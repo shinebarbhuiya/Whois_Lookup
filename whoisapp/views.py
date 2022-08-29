@@ -11,10 +11,10 @@ def Redirect_Page(request):
 
 def MainApp(request):
 
-    url = "https://whois-api.vercel.app"
+    url = "https://whois-3n3hiq001-shinebarbhuiya.vercel.app/"
     # url = input("Enter the domain : ")
 
-    domain = request.GET.get('domain', 'ownthecart.com')
+    domain = request.GET.get('domain', 'facebook.com')
     # domain = 'edmground.com'
 
     # domain = 'https://ownthecart.com'
